@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details</title>
+  <style>
+    body{
+        background-color: rgb(21, 250, 0);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid rgb(6, 27, 27);
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: rgb(117, 96, 236)
+    }
+
+    button {
+      color: white;
+      cursor: pointer;
+      background-color: gray;
+    }
+
+    .hidden-form {
+      display: none;
+    }
+
+    .hidden-form input {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Details Form</h2>
+
+  <form id="studentForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required>
+
+    <label for="grade">Grade:</label>
+    <input type="text" id="grade" name="grade" required>
+
+    <button type="button" onclick="addStudent()">Add Student</button>
+    <button><a href="Item Details.html">Back</a></button></h1>
+
+  </form>
+
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Grade</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="hidden-form" id="editForm">
+    <h2>Edit Student</h2>
+    <label for="editName">Name:</label>
+    <input type="text" id="editName" name="editName" required>
+
+    <label for="editAge">Age:</label>
+    <input type="number" id="editAge" name="editAge" required>
+
+    <label for="editGrade">Grade:</label>
+    <input type="text" id="editGrade" name="editGrade" required>
+
+    <button type="button" onclick="updateStudent()">Update</button>
+  </div>
+
+  <script>
+    function addStudent() {
+      var name = document.getElementById('name').value;
+      var age = document.getElementById('age').value;
+      var grade = document.getElementById('grade').value;
+
+      var table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
+      var newRow = table.insertRow(table.rows.length);
+      var cell1 = newRow.insertCell(0);
+      var cell2 = newRow.insertCell(1);
+      var cell3 = newRow.insertCell(2);
+      var cell4 = newRow.insertCell(3);
+
+      cell1.innerHTML = name;
+      cell2.innerHTML = age;
+      cell3.innerHTML = grade;
+      cell4.innerHTML = '<button onclick="editStudent(this)">Edit</button>' +
+                        '<button onclick="deleteStudent(this)">Delete</button>';
+      
+      document.getElementById('studentForm').reset();
+    }
+
+    function deleteStudent(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+
+    function editStudent(button) {
+      var row = button.parentNode.parentNode;
+      var cells = row.getElementsByTagName('td');
+
+      document.getElementById('editName').value = cells[0].innerHTML;
+      document.getElementById('editAge').value = cells[1].innerHTML;
+      document.getElementById('editGrade').value = cells[2].innerHTML;
+
+      document.getElementById('editForm').style.display = 'block';
+    }
+
+    function updateStudent() {
+      var editName = document.getElementById('editName').value;
+      var editAge = document.getElementById('editAge').value;
+      var editGrade = document.getElementById('editGrade').value;
+
+      var table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
+      var selectedRow = table.getElementsByClassName('selected')[0];
+
+      selectedRow.cells[0].innerHTML = editName;
+      selectedRow.cells[1].innerHTML = editAge;
+      selectedRow.cells[2].innerHTML = editGrade;
+
+      document.getElementById('editForm').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

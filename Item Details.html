@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color:rgb(21, 250, 0);
+    }
+
+    .card {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .read-more-content {
+      display: none;
+    }
+
+    .read-more-btn {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    button {
+            background-color: gray;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="beautyNature.png.jpg" alt="Item Image">
+    <div class="card-content">
+      <h2>Item Title</h2>
+      <p>Short description of the item. This is what the user sees initially.</p>
+      <div class="read-more-content">
+        <p>Full details of the item. This information is hidden initially.</p>
+        <p>Additional details...</p>
+        <button><a href="Student Details.html">Next</a></button>
+        <button><a href="Signup Form.html">Back</a></button></h1>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore()">Read more</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleReadMore() {
+      var readMoreContent = document.querySelector('.read-more-content');
+      var readMoreBtn = document.querySelector('.read-more-btn');
+
+      if (readMoreContent.style.display === 'none' || readMoreContent.style.display === '') {
+        readMoreContent.style.display = 'block';
+        readMoreBtn.textContent = 'Read less';
+      } else {
+        readMoreContent.style.display = 'none';
+        readMoreBtn.textContent = 'Read more';
+      }
+    }
+  </script>
+
+</body>
+</html>
